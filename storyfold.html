@@ -1,0 +1,49 @@
+<head>
+  <title>Story</title>
+</head>
+
+<body>
+</body>
+
+
+<template name="thestory">
+  <div class="col-lg-8">
+    <h1>Add to this Story</h1>
+    {{#unless submit}}
+      <form id="storyline">
+        <input type="text" name="storyline" id="storyline" class="form-control">
+        <input type="submit" class="btn btn-success" value="Add your story">
+      </form>
+    {{/unless}}
+  </div>
+  <div class="clearfix"></div>
+  <div class="col-lg-8">
+    {{#if submit}}
+      {{#each story}}
+        <p class="lead">{{line}}</p>
+      {{/each}}
+    {{/if}}
+  </div>
+</template>
+
+
+<template name="newstory">
+  <h1>Create a new story</h1>
+  {{#unless info}}
+  <form id="newstory">
+
+    <div class="col-lg-3">
+      How many invites?<br>
+      <input name="number" class="form-control">
+    </div>
+    <br>
+    <input class="btn btn-success" type="submit" value="Create">
+  </form>
+  {{/unless}}
+  {{#if info}}
+    These are one-time links to create a story!
+    {{#each info.invites}}
+      <br><pre>http://localhost:3000/{{info.id}}/{{this}}</pre>
+    {{/each}}
+  {{/if}}
+</template>
