@@ -8,22 +8,22 @@
 
 <template name="thestory">
   <div class="col-lg-8">
-    <h1>Add to this Story</h1>
-    {{#unless submit}}
-      <form id="storyline">
-        <input type="text" name="storyline" id="storyline" class="form-control">
-        <input type="submit" class="btn btn-success" value="Add your story">
-      </form>
-    {{/unless}}
-  </div>
-  <div class="clearfix"></div>
-  <div class="col-lg-8">
-    {{#if submit}}
-      {{#each story}}
-        <p class="lead">{{line}}</p>
-      {{/each}}
-    {{/if}}
-  </div>
+      <h1>Add to this Story</h1>
+      {{#unless submit}}
+        <form id="storyline">
+          <input type="text" name="storyline" id="storyline" class="form-control">
+          <input type="submit" class="btn btn-success" value="Add your story">
+        </form>
+      {{/unless}}
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-lg-8">
+      {{#if submit}}
+        {{#each story}}
+          <p class="lead">{{line}}</p>
+        {{/each}}
+      {{/if}}
+    </div>
 </template>
 
 

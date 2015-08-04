@@ -2,7 +2,7 @@ Story = new Meteor.Collection('story');
 
 if (Meteor.isClient) {
 
-  Meteor.subscribe('story');
+
 
   Template.thestory.helpers({
     'story': function(){
@@ -27,32 +27,29 @@ if (Meteor.isClient) {
     }
   });
 
-  Router.route('/story/:storyid/:userid', {
+  Router.route('/story/:_storyid/:_userid', {
     name: 'story.show',
 
+    path: '/story/:_storyid/:_userid',
+
+    template: 'thestory',
+
+    subscriptions: function() {
+      this.subscribe('story');
+
+    },
     data: function () {
-      var Story = Story.findOne({_id: this.params.storyid});
-      var invites = Story.invites;
+      var data = Story.findOne({_id: this.params._storyid});
+      if(data){
 
-      var returnarr = invites.filter(function (elem, i, array) {
-        if (elem === this.params.userid) {
-          return true;
-        }
-      });
-
-      if (returnarr === true){
-        Meteor.call('removeInvite', this.params.userid);
-        return data;
       } else {
-        return false;
+        Router.go('nope');
       }
     },
 
-
     action: function () {
-      this.render('thestory');
-    },
-    onBeforeAction: function () {
+      // render all templates and regions for this route
+      this.render();
       this.next();
     }
   });
